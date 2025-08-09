@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microrentroll — Buy & Sell Small Rent Rolls</title>
+  <meta name="description" content="Marketplace for buying and selling small rent roll portfolios with NDA-gated data rooms, offers, and Deal Assurance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#f5fbff', 100: '#e6f6ff', 200: '#bfebff', 300: '#8edbff', 400: '#52c3ff',
+              500: '#1aa6ff', 600: '#0a86db', 700: '#0b6fb4', 800: '#0f5a91', 900: '#0f4a77'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+  <header class="sticky top-0 z-40 bg-white/70 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/microrentroll/index.html" class="flex items-center gap-2">
+        <div class="h-8 w-8 rounded-md bg-brand-600"></div>
+        <span class="font-extrabold tracking-tight text-lg">Microrentroll</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a class="hover:text-brand-700" href="#features">Features</a>
+        <a class="hover:text-brand-700" href="#how-it-works">How it works</a>
+        <a class="hover:text-brand-700" href="#pricing">Pricing</a>
+        <a class="hover:text-brand-700" href="#faq">FAQ</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="/microrentroll/valuation.html" class="inline-flex items-center rounded-md px-4 py-2 text-sm font-semibold bg-brand-600 text-white hover:bg-brand-700 shadow-sm">Get Instant Valuation</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+              Buy and sell small rent rolls with confidence
+            </h1>
+            <p class="mt-5 text-lg text-slate-600">
+              Marketplace and workflow for 1–50 property portfolios. NDA-gated data rooms, structured offers, and Deal Assurance with escrow and retention tracking.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <a href="/microrentroll/valuation.html" class="inline-flex items-center rounded-md px-5 py-3 text-sm font-semibold bg-brand-600 text-white hover:bg-brand-700 shadow-sm">Get Instant Valuation</a>
+              <a href="#features" class="inline-flex items-center rounded-md px-5 py-3 text-sm font-semibold border border-slate-300 text-slate-800 hover:bg-slate-50">Explore Features</a>
+            </div>
+            <div class="mt-6 text-sm text-slate-500">
+              No sign‑up required for instant valuation. Generate a listing draft in one click.
+            </div>
+          </div>
+          <div>
+            <div class="bg-gradient-to-br from-brand-50 to-white border border-slate-200 rounded-xl p-6 shadow-sm">
+              <div class="grid grid-cols-2 gap-4 text-sm">
+                <div class="p-4 bg-white rounded-lg border border-slate-200">
+                  <div class="text-slate-500">Active Listings</div>
+                  <div class="mt-1 text-2xl font-bold">128</div>
+                </div>
+                <div class="p-4 bg-white rounded-lg border border-slate-200">
+                  <div class="text-slate-500">Avg Multiplier</div>
+                  <div class="mt-1 text-2xl font-bold">3.1×</div>
+                </div>
+                <div class="p-4 bg-white rounded-lg border border-slate-200">
+                  <div class="text-slate-500">NDAs Signed</div>
+                  <div class="mt-1 text-2xl font-bold">2,347</div>
+                </div>
+                <div class="p-4 bg-white rounded-lg border border-slate-200">
+                  <div class="text-slate-500">Retention</div>
+                  <div class="mt-1 text-2xl font-bold">92.4%</div>
+                </div>
+              </div>
+              <div class="mt-6 p-4 rounded-lg border border-dashed border-brand-300 bg-brand-50 text-brand-900 text-sm">
+                Deal Assurance available: escrow, landlord engagement, and milestone disbursements.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="border-t border-slate-200 bg-slate-50/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 class="text-2xl font-bold">Features</h2>
+        <div class="mt-8 grid md:grid-cols-3 gap-6">
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <h3 class="font-semibold">Masked Marketplace</h3>
+            <p class="mt-2 text-sm text-slate-600">Public listings with identifying details masked. Unlock via NDA.</p>
+          </div>
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <h3 class="font-semibold">NDA‑Gated Data Rooms</h3>
+            <p class="mt-2 text-sm text-slate-600">Secure doc viewer with access logs and downloadable offer summary PDFs.</p>
+          </div>
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <h3 class="font-semibold">Offers & Counters</h3>
+            <p class="mt-2 text-sm text-slate-600">Submit, accept, reject, or counter offers with clear timelines.</p>
+          </div>
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <h3 class="font-semibold">Deal Assurance</h3>
+            <p class="mt-2 text-sm text-slate-600">Escrow via licensed partners, landlord engagement, retention tracking.</p>
+          </div>
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <h3 class="font-semibold">Instant Valuation</h3>
+            <p class="mt-2 text-sm text-slate-600">Estimate value based on income × multiplier adjusted by market factors.</p>
+          </div>
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <h3 class="font-semibold">Admin CMS</h3>
+            <p class="mt-2 text-sm text-slate-600">Approve listings, manage content, monitor deals and NDAs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 class="text-2xl font-bold">Deal Assurance Tiers</h2>
+        <div class="mt-8 grid md:grid-cols-4 gap-6 text-sm">
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <div class="font-semibold">Basic</div>
+            <div class="text-slate-500">$195 flat</div>
+            <ul class="mt-3 list-disc list-inside text-slate-600">
+              <li>Self‑service escrow</li>
+            </ul>
+          </div>
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <div class="font-semibold">Standard</div>
+            <div class="text-slate-500">$495 or 1.5%</div>
+            <ul class="mt-3 list-disc list-inside text-slate-600">
+              <li>Escrow + landlord email + retention logic</li>
+            </ul>
+          </div>
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <div class="font-semibold">Premium</div>
+            <div class="text-slate-500">$895 or 2%</div>
+            <ul class="mt-3 list-disc list-inside text-slate-600">
+              <li>SMS + auto tracking + certified retention PDF</li>
+            </ul>
+          </div>
+          <div class="p-6 bg-white border border-slate-200 rounded-xl">
+            <div class="font-semibold">Concierge</div>
+            <div class="text-slate-500">$1,495 or 3%</div>
+            <ul class="mt-3 list-disc list-inside text-slate-600">
+              <li>All of Premium + follow‑up calls + dispute support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="border-t border-slate-200 bg-slate-50/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 class="text-2xl font-bold">FAQ</h2>
+        <div class="mt-6 space-y-4 text-sm">
+          <details class="p-4 bg-white border border-slate-200 rounded-lg">
+            <summary class="font-semibold cursor-pointer">Do you hold escrow funds?</summary>
+            <p class="mt-2 text-slate-600">No. Escrow funds are held by licensed third‑party providers (e.g., Escrow.com or solicitor trust accounts).</p>
+          </details>
+          <details class="p-4 bg-white border border-slate-200 rounded-lg">
+            <summary class="font-semibold cursor-pointer">Is the valuation financial advice?</summary>
+            <p class="mt-2 text-slate-600">No. Our valuation is an estimate based on your inputs and market multipliers. It is not financial advice.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-slate-600 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>© <span id="year"></span> Microrentroll. All rights reserved.</div>
+      <div class="flex items-center gap-4">
+        <a class="hover:text-brand-700" href="#">Terms</a>
+        <a class="hover:text-brand-700" href="#">Privacy</a>
+        <a class="hover:text-brand-700" href="/microrentroll/valuation.html">Valuation</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

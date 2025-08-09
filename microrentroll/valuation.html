@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microrentroll — Instant Rent Roll Valuation</title>
+  <meta name="description" content="Get an instant valuation estimate for your rent roll based on income and market multipliers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#f5fbff', 100: '#e6f6ff', 200: '#bfebff', 300: '#8edbff', 400: '#52c3ff',
+              500: '#1aa6ff', 600: '#0a86db', 700: '#0b6fb4', 800: '#0f5a91', 900: '#0f4a77'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+  <header class="sticky top-0 z-40 bg-white/70 backdrop-blur border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/microrentroll/index.html" class="flex items-center gap-2">
+        <div class="h-8 w-8 rounded-md bg-brand-600"></div>
+        <span class="font-extrabold tracking-tight text-lg">Microrentroll</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="/microrentroll/index.html" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold border border-slate-300 hover:bg-slate-50">Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="border-b border-slate-200">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <h1 class="text-3xl font-extrabold">Instant Rent Roll Valuation</h1>
+        <p class="mt-2 text-slate-600">Enter a few details to estimate your rent roll’s value. Results are indicative and not financial advice.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-8">
+        <form id="valuation-form" class="md:col-span-2 space-y-6">
+          <div>
+            <label class="block text-sm font-medium">Number of properties</label>
+            <input type="number" id="numProperties" class="mt-2 w-full rounded-md border-slate-300 focus:border-brand-500 focus:ring-brand-500" placeholder="e.g., 30" min="1" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Average weekly rent (AWR)</label>
+            <input type="number" id="avgWeeklyRent" class="mt-2 w-full rounded-md border-slate-300 focus:border-brand-500 focus:ring-brand-500" placeholder="e.g., 600" min="1" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Average management fee (%)</label>
+            <input type="number" id="feePercent" class="mt-2 w-full rounded-md border-slate-300 focus:border-brand-500 focus:ring-brand-500" placeholder="e.g., 6.5" min="1" step="0.1" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Region</label>
+            <select id="region" class="mt-2 w-full rounded-md border-slate-300 focus:border-brand-500 focus:ring-brand-500">
+              <option value="metro_high">Metro — High demand</option>
+              <option value="metro_std">Metro — Standard</option>
+              <option value="regional_high">Regional — High demand</option>
+              <option value="regional_std">Regional — Standard</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Average annual churn (%)</label>
+            <input type="number" id="churnPercent" class="mt-2 w-full rounded-md border-slate-300 focus:border-brand-500 focus:ring-brand-500" placeholder="e.g., 12" min="0" step="0.1" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Contract type</label>
+            <select id="contractType" class="mt-2 w-full rounded-md border-slate-300 focus:border-brand-500 focus:ring-brand-500">
+              <option value="exclusive">Mostly exclusive</option>
+              <option value="mixed">Mixed</option>
+              <option value="casual">Mostly casual</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Extra services (select any)</label>
+            <div class="mt-2 grid sm:grid-cols-2 gap-2 text-sm">
+              <label class="inline-flex items-center gap-2"><input type="checkbox" value="letting" class="rounded border-slate-300"> Letting fees</label>
+              <label class="inline-flex items-center gap-2"><input type="checkbox" value="insurance" class="rounded border-slate-300"> Insurance commissions</label>
+              <label class="inline-flex items-center gap-2"><input type="checkbox" value="inspections" class="rounded border-slate-300"> Routine inspections</label>
+              <label class="inline-flex items-center gap-2"><input type="checkbox" value="utilities" class="rounded border-slate-300"> Utilities/bill pay</label>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 pt-2">
+            <button type="submit" class="inline-flex items-center rounded-md px-5 py-3 text-sm font-semibold bg-brand-600 text-white hover:bg-brand-700 shadow-sm">Calculate valuation</button>
+            <button type="button" id="resetBtn" class="inline-flex items-center rounded-md px-5 py-3 text-sm font-semibold border border-slate-300 text-slate-800 hover:bg-slate-50">Reset</button>
+          </div>
+        </form>
+
+        <aside class="md:col-span-1">
+          <div class="sticky top-24">
+            <div class="p-6 bg-slate-50 border border-slate-200 rounded-xl">
+              <div class="text-sm text-slate-500">Estimated valuation range</div>
+              <div id="valuationRange" class="mt-2 text-2xl font-extrabold">—</div>
+              <div class="mt-4 text-xs text-slate-500">Based on Annual Management Income × Market Multiplier with adjustments for churn, region, contracts, and extras.</div>
+              <div id="drivers" class="mt-4 text-xs text-slate-600 space-y-1"></div>
+              <div class="mt-6 flex flex-col gap-2">
+                <a id="ctaList" href="/microrentroll/index.html#features" class="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-semibold bg-brand-600 text-white hover:bg-brand-700">Create listing from this valuation</a>
+                <button id="downloadPdf" class="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-semibold border border-slate-300 hover:bg-slate-50">Download PDF (stub)</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-slate-600 flex items-center justify-between">
+      <div>© <span id="year"></span> Microrentroll</div>
+      <a class="hover:text-brand-700" href="/microrentroll/index.html">Home</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function clamp(value, min, max) { return Math.min(Math.max(value, min), max); }
+    function formatCurrency(n) {
+      return n.toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    }
+
+    function baseMultiplierByRegion(region) {
+      switch (region) {
+        case 'metro_high': return 3.4;
+        case 'metro_std': return 3.1;
+        case 'regional_high': return 3.0;
+        case 'regional_std': return 2.7;
+        default: return 3.0;
+      }
+    }
+
+    function churnAdjustment(multiplier, churnPercent) {
+      if (isNaN(churnPercent)) return multiplier;
+      const c = clamp(churnPercent, 0, 30);
+      const delta = (c - 10) * 0.02; // 2 bps per 1% away from 10%
+      return multiplier - delta;
+    }
+
+    function contractAdjustment(multiplier, type) {
+      if (type === 'exclusive') return multiplier + 0.15;
+      if (type === 'casual') return multiplier - 0.15;
+      return multiplier;
+    }
+
+    function extrasAdjustment(multiplier, extras) {
+      let adj = multiplier;
+      if (extras.includes('letting')) adj += 0.05;
+      if (extras.includes('insurance')) adj += 0.05;
+      if (extras.includes('inspections')) adj += 0.03;
+      if (extras.includes('utilities')) adj += 0.02;
+      return adj;
+    }
+
+    function computeValuation(inputs) {
+      const awr = inputs.avgWeeklyRent;
+      const fee = inputs.feePercent / 100;
+      const props = inputs.numProperties;
+      const annualMgmtIncome = awr * fee * 52 * props;
+
+      let mult = baseMultiplierByRegion(inputs.region);
+      mult = churnAdjustment(mult, inputs.churnPercent ?? 10);
+      mult = contractAdjustment(mult, inputs.contractType);
+      mult = extrasAdjustment(mult, inputs.extras);
+      mult = clamp(mult, 2.0, 4.0);
+
+      const mid = annualMgmtIncome * mult;
+      const low = annualMgmtIncome * (mult - 0.15);
+      const high = annualMgmtIncome * (mult + 0.15);
+
+      return { low, mid, high, mult, annualMgmtIncome };
+    }
+
+    function collectInputs() {
+      const extras = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(x => x.value);
+      return {
+        numProperties: Number(document.getElementById('numProperties').value),
+        avgWeeklyRent: Number(document.getElementById('avgWeeklyRent').value),
+        feePercent: Number(document.getElementById('feePercent').value),
+        region: document.getElementById('region').value,
+        churnPercent: Number(document.getElementById('churnPercent').value || '10'),
+        contractType: document.getElementById('contractType').value,
+        extras
+      };
+    }
+
+    function describeDrivers(inputs, result) {
+      const lines = [];
+      lines.push(`Annual Management Income: ${formatCurrency(result.annualMgmtIncome)}`);
+      lines.push(`Effective Multiplier: ${result.mult.toFixed(2)}×`);
+      if (inputs.churnPercent) lines.push(`Churn adjustment applied: ${inputs.churnPercent}%`);
+      if (inputs.contractType !== 'mixed') lines.push(`Contract mix: ${inputs.contractType}`);
+      if (inputs.extras.length) lines.push(`Extras: ${inputs.extras.join(', ')}`);
+      return lines.map(t => `<div>• ${t}</div>`).join('');
+    }
+
+    document.getElementById('valuation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const inputs = collectInputs();
+      const r = computeValuation(inputs);
+      const rangeText = `${formatCurrency(r.low)} – ${formatCurrency(r.high)}`;
+      document.getElementById('valuationRange').textContent = rangeText;
+      document.getElementById('drivers').innerHTML = describeDrivers(inputs, r);
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      document.getElementById('valuation-form').reset();
+      document.getElementById('valuationRange').textContent = '—';
+      document.getElementById('drivers').innerHTML = '';
+    });
+
+    document.getElementById('downloadPdf').addEventListener('click', function() {
+      alert('PDF generation will be integrated (stub).');
+    });
+  </script>
+</body>
+</html>
